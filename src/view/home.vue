@@ -50,7 +50,7 @@ import { onMounted, ref, reactive, onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { menus } from '../../http/req'
 import Head from '../components/homeHead.vue'
-const menuList = ref([])
+const menuList = ref([]) as any
 const router = useRouter()
 const menuIconList = reactive([User, Setting, Goods, Tickets, PieChart])
 //菜单数据获取
