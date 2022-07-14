@@ -163,7 +163,7 @@ const fastMailInfo = ref()
 const seeFastMail = async function (i: any) {
     fastMailDialogVisible.value = true
     console.log(i.order_id)
-    const r = await getKuaidi(1106975712662)
+    const r = await getKuaidi()
     console.log(r)
     fastMailInfo.value = r.data
 }

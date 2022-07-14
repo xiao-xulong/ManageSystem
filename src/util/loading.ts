@@ -1,4 +1,4 @@
-// import { ElLoading } from 'element-plus'
+import { ElLoading } from 'element-plus'
 const Loading = function () {
     const loading = ElLoading.service({
         lock: true,

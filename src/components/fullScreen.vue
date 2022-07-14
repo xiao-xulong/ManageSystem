@@ -17,7 +17,7 @@
 <script setup lang='ts'>
 import screenfull from 'screenfull'
 import { ref } from 'vue';
-const isFull = ref<any>(screenfull.isFullscreen)
+const isFull = ref(false)
 const fullScreen = function () {
     if (screenfull.isEnabled) {
         screenfull.toggle()
