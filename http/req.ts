@@ -11,7 +11,7 @@ http.interceptors.request.use((config: any) => {
     config.headers.Authorization = sessionStorage.getItem('token')
     return config
 })
-const login = function (data) {
+const login = function (data: any) {
     return http.post('login',
         data
     )
@@ -20,93 +20,93 @@ const menus = function () {
     return http.get('menus')
 }
 
-const users = function (pagenum, pagesize, query) {
+const users = function (pagenum: any, pagesize: any, query: any) {
     return http.get('users', { params: { pagenum: pagenum, pagesize: pagesize, query: query } })
 }
 
-const userState = function (id, state) {
+const userState = function (id: any, state: any) {
     return http.put(`users/${id}/state/${state}`)
 }
 
-const AlterUser = function (id, info) {
+const AlterUser = function (id: any, info: any) {
     return http.put(`users/${id}`, info)
 }
 
-const AddUser = function (info) {
+const AddUser = function (info: any) {
     return http.post('users', info)
 }
-const delUser = function (id) {
+const delUser = function (id: any) {
     return http.delete(`users/${id}`)
 }
-const rights = function (type) {
+const rights = function (type: any) {
     return http.get(`rights/${type}`)
 }
 
 const roles = function () {
     return http.get(`roles`)
 }
-const addRoles = function (data) {
+const addRoles = function (data: any) {
     return http.post(`roles`, data)
 }
-const editRole = function (id, roleName, roleDesc) {
+const editRole = function (id: any, roleName: any, roleDesc: any) {
     return http.put(`roles/${id}`, { roleName: roleName, roleDesc: roleDesc })
 }
 const delRole = function (id) {
     return http.delete(`roles/${id}`)
 }
-const delRights = function (roleId, rightId) {
+const delRights = function (roleId: any, rightId: any) {
     return http.delete(`roles/${roleId}/rights/${rightId}`)
 }
-const setRights = function (id, rids) {
+const setRights = function (id: any, rids: any) {
     return http.post(`roles/${id}/rights`, { rids: rids })
 }
-const submitUserRole = function (id, rid) {
+const submitUserRole = function (id: any, rid: any) {
     return http.put(`users/${id}/role`, rid)
 }
-const getCategories = function (type, pagenum, pagesize) {
+const getCategories = function (type: any, pagenum: any, pagesize: any) {
     return http.get(`categories`, { params: { type: type, pagenum: pagenum, pagesize: pagesize } })
 }
 
-const postCategories = function (cat_pid, cat_name, cat_level) {
+const postCategories = function (cat_pid: any, cat_name: any, cat_level: any) {
     return http.post(`categories`, { cat_pid: cat_pid, cat_name: cat_name, cat_level: cat_level })
 }
-const getAttributes = function (id, sel) {
+const getAttributes = function (id: any, sel: any) {
     return http.get(`categories/${id}/attributes`, { params: { sel: sel } })
 }
-const addAttributes = function (id, attr_name, attr_sel, attr_vals) {
+const addAttributes = function (id: any, attr_name: any, attr_sel: any, attr_vals: any) {
     return http.post(`categories/${id}/attributes`, { attr_name: attr_name, attr_sel: attr_sel, attr_vals: attr_vals })
 }
-const editCategories = function (id, cat_name) {
+const editCategories = function (id: any, cat_name: any) {
     return http.put(`categories/${id}`, { cat_name: cat_name })
 }
-const delCategories = function (id) {
+const delCategories = function (id: any) {
     return http.delete(`categories/${id}`)
 }
-const postAttributes = function (id, attr_name, attr_sel, attr_vals, attrId) {
+const postAttributes = function (id: any, attr_name: any, attr_sel: any, attr_vals: any, attrId: any) {
     return http.put(`categories/${id}/attributes/${attrId}`, { attr_name: attr_name, attr_sel: attr_sel, attr_vals: attr_vals })
 }
 
 
-const getGoods = function (query, pagenum, pagesize) {
+const getGoods = function (query: any, pagenum: any, pagesize: any) {
     return http.get(`goods`, { params: { query: query, pagenum: pagenum, pagesize: pagesize } })
 }
-const uploadPic = function (file) {
+const uploadPic = function (file: any) {
     return http.post(`upload`, { file: file })
 }
-const postGoods = function (data) {
+const postGoods = function (data: any) {
     return http.post(`goods`, data)
 }
-const delGoods = function (id) {
+const delGoods = function (id: any) {
     return http.delete(`goods/${id}`)
 }
-const getOrders = function (info) {
+const getOrders = function (info: any) {
     return http.get(`orders`, { params: info })
 }
 const getechart = function () {
     return http.get(`reports/type/1`)
 }
 
-const getKuaidi = function (id) {
+const getKuaidi = function () {
     return {
         "data": [
             {
