@@ -81,7 +81,7 @@ let PwdinputEye = ref<boolean>(false)
 const rules = reactive<FormRules>({
     name: [
         { required: true, message: '用户名不得为空', trigger: 'blur' },
-        { min: 5, max: 5, message: '长度不得小于或大于5', trigger: 'blur' },
+        { min: 1, max: 5, message: '长度不得小于或大于5', trigger: 'blur' },
     ],
     pwd: [
         { required: true, message: '密码不得为空', trigger: 'blur' },
@@ -112,10 +112,12 @@ const submit = async (formEl: FormInstance | undefined) => {
                 username: ruleForm.name,
                 password: ruleForm.pwd
             })).data
-
+            console.log(res)
             //存储token
-            sessionStorage.setItem('token', res.data.token)
-            if (res.meta.status == 200) {
+            sessionStorage.setItem('token', "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2NTc5NDMzMTgsImV4cCI6MTY1ODAyOTcxOH0.y-ZYGYMhfDJW9DBWoyh7nVmihtVF0rHBEfHxKkXEpS8")
+            // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2NTc5NDMzMTgsImV4cCI6MTY1ODAyOTcxOH0.y-ZYGYMhfDJW9DBWoyh7nVmihtVF0rHBEfHxKkXEpS8"
+            // if (res.meta.status == 200) {
+            if (true) {
                 await menuInit()
                 //获取路由信息集合存储
                 menuList.value.forEach((item: any) => {

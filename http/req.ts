@@ -1,8 +1,8 @@
 import axios from "axios";
 import { da } from "element-plus/lib/locale";
-
+// https://www.liulongbin.top:8888/api/private/v1
 const http = axios.create({
-    baseURL: 'http://175.27.228.178:3434/api/private/v1/',
+    baseURL: 'https://www.liulongbin.top:8888/api/private/v1',
     timeout: 10000,
     // headers: {'X-Custom-Header': 'foobar'}
 })
