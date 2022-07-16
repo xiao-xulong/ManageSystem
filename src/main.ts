@@ -12,7 +12,7 @@ import lazyPlugin from 'vue3-lazy'
 import { Loading } from '../src/util/loading'
 const app = createApp(App)
 import * as dayjs from 'dayjs'
-app.config.globalProperties.$dayjs = dayjs
+app.config.globalProperties.$dayjs = dayjs as any
 
 app.config.globalProperties.$Loading = Loading
 
