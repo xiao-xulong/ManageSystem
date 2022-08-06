@@ -40,6 +40,7 @@
                 </el-form-item>
             </el-form>
         </el-card>
+        <input ref="inp" class="animate__animated animate__bounceInLeft" />
     </main>
 </template>
 
@@ -47,14 +48,26 @@
 import { menus } from '../../http/req'
 import { useStore } from 'vuex'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { onMounted, ref, reactive, getCurrentInstance } from 'vue'
+import { onMounted, ref, reactive, getCurrentInstance, onActivated, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
-
 import { login } from '../../http/req'
-import { Interface } from 'readline'
-const { proxy } = getCurrentInstance() as any
 
+
+const inp = ref()
+nextTick(() => {
+    inp.value.value = '2'
+    console.log(inp.value.value)
+})
+// 
+
+const { proxy } = getCurrentInstance() as any
+onActivated(() => {
+    console.log('aaaaa')
+})
+onMounted(() => {
+    console.log('mmmm')
+})
 const store = useStore()
 const router = useRouter()
 const menuList = ref([] as any)
@@ -62,7 +75,7 @@ const menuListSave = ref([] as any)
 const menuInit = async () => {
     menuList.value = (await menus()).data.data
     console.log('menuList.value')
-    // sessionStorage.setItem('routes', JSON.stringify(menuList.value))
+    sessionStorage.setItem('routes', JSON.stringify(menuList.value))
     console.log(menuList.value)
 }
 
@@ -112,9 +125,10 @@ const submit = async (formEl: FormInstance | undefined) => {
                 username: ruleForm.name,
                 password: ruleForm.pwd
             })).data
+            console.log('res')
             console.log(res)
             //存储token
-            sessionStorage.setItem('token', "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2NTc5NDMzMTgsImV4cCI6MTY1ODAyOTcxOH0.y-ZYGYMhfDJW9DBWoyh7nVmihtVF0rHBEfHxKkXEpS8")
+            sessionStorage.setItem('token', res.data.token)
             // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2NTc5NDMzMTgsImV4cCI6MTY1ODAyOTcxOH0.y-ZYGYMhfDJW9DBWoyh7nVmihtVF0rHBEfHxKkXEpS8"
             // if (res.meta.status == 200) {
             if (true) {
@@ -148,6 +162,11 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
+</script>
+<script lang="ts">
+export default {
+    name: "Login",
+};
 </script>
 <style>
 .el-icon {

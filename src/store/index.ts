@@ -15,11 +15,11 @@ const store = createStore({
         //路由拼接及添加
         routesJoin(state, router) {
             const modules = import.meta.glob('../view/home_childs/*.vue')
-            const childsRou = JSON.parse(sessionStorage.getItem('rc'))
+            const childsRou = JSON.parse(sessionStorage.getItem('rc') as any)
             console.log(modules)
             console.log(modules['../view/home_childs/users.vue'])
             console.log(childsRou)
-            childsRou.forEach((c) => {
+            childsRou.forEach((c: any) => {
                 console.log(c.component)
                 router.addRoute('Home', {
                     path: '/' + c.path, name: `${c.path}`, meta: c.meta,

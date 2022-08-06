@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onActivated } from 'vue'
 import { rights } from '../../../http/req'
 const tableData = ref([])
 const tableColumns = reactive([
@@ -27,14 +27,20 @@ const tableColumns = reactive([
     { prop: "path", label: '路径' },
     { prop: "level", label: '权限等级' }
 ])
-
+onActivated(() => {
+    console.log('rrrrrrrrrrrrrrrrrrrr')
+})
 onMounted(async () => {
     const { data } = await rights('list')
     console.log(data.data)
     tableData.value = data.data
 })
 </script>
-
+<script lang="ts">
+export default {
+    name: "Right",
+};
+</script>
 <style  scoped>
 :deep(.el-tag) {
     height: 40px;

@@ -30,7 +30,12 @@
                     <Head @ExpandIconChange="ExpandIconChange" :isExpand="isExpand"></Head>
                 </el-header>
                 <el-main>
-                    <router-view />
+                    <router-view v-slot="{ Component }">
+                        <keep-alive include="Users,Right">
+                            <component :is="Component" />
+                        </keep-alive>
+                    </router-view>
+                    <!-- <router-view /> -->
 
                 </el-main>
             </el-container>
@@ -39,6 +44,7 @@
 </template>
 
 <script setup lang='ts' >
+
 import {
     Document,
     Menu as IconMenu,
@@ -46,12 +52,13 @@ import {
     Setting,
     User, Goods, Tickets, PieChart, Menu, Fold, Expand
 } from '@element-plus/icons-vue'
-import { onMounted, ref, reactive, onBeforeMount } from 'vue'
+import { onMounted, ref, reactive, onBeforeMount, onActivated } from 'vue'
 import { useRouter } from 'vue-router'
 import { menus } from '../../http/req'
 import Head from '../components/homeHead.vue'
 const menuList = ref([]) as any
 const router = useRouter()
+
 const menuIconList = reactive([User, Setting, Goods, Tickets, PieChart])
 //菜单数据获取
 const menuInit = async () => {

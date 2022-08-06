@@ -51,7 +51,7 @@ import {
 import { ElMessage, ElMessageBox } from "element-plus";
 import diglog from "../../components/dialog.vue"
 import setUserRoleDiglog from "../../components/setUserRoleDiglog.vue";
-import { ref, onMounted, getCurrentInstance } from "vue";
+import { ref, onMounted, getCurrentInstance, onActivated } from "vue";
 import {
   users,
   userState,
@@ -60,6 +60,9 @@ import {
   submitUserRole,
 } from "../../../http/req";
 const { proxy } = getCurrentInstance() as any;
+onActivated(() => {
+  console.log('haaaaa')
+})
 const pagenum = ref(1);
 const pagesize = ref(10);
 const userInfo = ref([]);
@@ -133,7 +136,7 @@ const visibleChange = function () {
 const stateChange = async function (i: any) {
   console.log(i);
   const r = (await userState(i.id, i.mg_state)).data.meta.msg;
-  console.log(r);
+  // console.log(r);
   ElMessage({
     message: r,
     type: "success",
@@ -146,7 +149,7 @@ const usersGet = async function () {
   ).data.data;
   userInfo.value = res.users;
   total.value = res.total;
-  console.log(res);
+  // console.log(res);
 };
 const handleCurrentChange = function (pageNum: number) {
   pagenum.value = pageNum;
@@ -165,7 +168,7 @@ const deleteUser = (id: any) => {
   })
     .then(async () => {
       const { data } = await delUser(id);
-      console.log(data.meta);
+      // console.log(data.meta);
       usersGet();
       ElMessage({
         type: "success",
@@ -183,8 +186,14 @@ const ddd = ref()
 onMounted(() => {
   usersGet();
   ddd.value.pose()
+  console.log('haaaaaon')
   // .dayjs(1642662900000).format('YYYY-MM-DD')
 });
+</script>
+<script lang="ts">
+export default {
+  name: "Users",
+};
 </script>
 <style>
 .el-message-icon--success {

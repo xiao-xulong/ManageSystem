@@ -53,6 +53,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HomeHead: typeof import('./src/components/homeHead.vue')['default']
     RoleDiglog: typeof import('./src/components/roleDiglog.vue')['default']
+    S: typeof import('./src/components/s.vue')['default']
     Setpowerdialog: typeof import('./src/components/setpowerdialog.vue')['default']
     SetUserRoleDiglog: typeof import('./src/components/setUserRoleDiglog.vue')['default']
     T: typeof import('./src/components/t.vue')['default']
