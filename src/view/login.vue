@@ -163,10 +163,10 @@ const submit = async (formEl: FormInstance | undefined) => {
 }
 
 </script>
-<script>
+<script lang="ts">
 export default {
     name: "Login",
-};
+}
 </script>
 <style>
 .el-icon {
