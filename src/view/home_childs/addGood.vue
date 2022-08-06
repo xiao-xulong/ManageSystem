@@ -187,7 +187,7 @@ const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
 const sucUpload = function (response: any, uploadFile: any) {
     pics.push({ pic: response.data.tmp_path })
 }
-const pics = reactive([])
+const pics = reactive<any>([])
 const uploadHeader = { Authorization: sessionStorage.getItem('token') }
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)

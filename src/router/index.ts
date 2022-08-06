@@ -98,7 +98,7 @@ router.beforeEach((to, from, next) => {
     if (to.path !== '/login') {
         if (sessionStorage.getItem('token') != 'undefined' && sessionStorage.getItem('token') != undefined) {
             if (store.state.routeFlag == false) {
-                const info = JSON.parse(sessionStorage.getItem('rc'))
+                const info = JSON.parse(sessionStorage.getItem('rc') as any)
                 store.commit('routesJoin', router)
                 store.state.routeFlag = true
                 next({ ...to, replace: true })
