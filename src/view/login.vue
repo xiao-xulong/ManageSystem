@@ -40,7 +40,7 @@
                 </el-form-item>
             </el-form>
         </el-card>
-        <input ref="inp" class="animate__animated bounceInLeft" />
+        <input ref="inp" class="animate__animated animate__bounceInLeft" />
     </main>
 </template>
 
