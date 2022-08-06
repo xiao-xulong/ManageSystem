@@ -51,7 +51,7 @@ const addRoles = function (data: any) {
 const editRole = function (id: any, roleName: any, roleDesc: any) {
     return http.put(`roles/${id}`, { roleName: roleName, roleDesc: roleDesc })
 }
-const delRole = function (id) {
+const delRole = function (id: any) {
     return http.delete(`roles/${id}`)
 }
 const delRights = function (roleId: any, rightId: any) {
