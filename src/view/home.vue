@@ -43,8 +43,7 @@
     </div>
 </template>
 
-<script setup lang='ts' >
-
+<script setup lang='ts'>
 import {
     Document,
     Menu as IconMenu,
