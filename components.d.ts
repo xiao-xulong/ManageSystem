@@ -57,6 +57,7 @@ declare module 'vue' {
     Setpowerdialog: typeof import('./src/components/setpowerdialog.vue')['default']
     SetUserRoleDiglog: typeof import('./src/components/setUserRoleDiglog.vue')['default']
     T: typeof import('./src/components/t.vue')['default']
+    Test: typeof import('./src/components/test.vue')['default']
   }
 }
 

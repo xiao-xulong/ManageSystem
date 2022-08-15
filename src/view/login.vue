@@ -40,7 +40,8 @@
                 </el-form-item>
             </el-form>
         </el-card>
-        <input ref="inp" class="animate__animated animate__bounceInLeft" />
+        <Test></Test>
+        <!-- <button @click="c">123</button> -->
     </main>
 </template>
 
@@ -48,17 +49,13 @@
 import { menus } from '../../http/req'
 import { useStore } from 'vuex'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { onMounted, ref, reactive, getCurrentInstance, onActivated, nextTick } from 'vue'
+import { onMounted, ref, reactive, getCurrentInstance, onActivated, nextTick, watch, watchEffect, provide } from 'vue'
 import { useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
 import { login } from '../../http/req'
+import Test from '../components/test.vue'
 
 
-const inp = ref()
-nextTick(() => {
-    inp.value.value = '2'
-    console.log(inp.value.value)
-})
 // 
 
 const { proxy } = getCurrentInstance() as any
@@ -75,7 +72,7 @@ const menuListSave = ref([] as any)
 const menuInit = async () => {
     menuList.value = (await menus()).data.data
     console.log('menuList.value')
-    sessionStorage.setItem('routes', JSON.stringify(menuList.value))
+    sessionStorage.setItem('routes', menuList.value)
     console.log(menuList.value)
 }
 
