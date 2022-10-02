@@ -17,11 +17,17 @@
     "dayjs": "^1.11.2",
     "echarts": "^5.3.3",
     "element-plus": "^2.2.9",
+    "file-saver": "^2.0.5",
+    "rimraf": "^3.0.2",
     "screenfull": "^5.1.0",
     "vue": "^3.2.25",
+    "vue-json-excel": "^0.3.0",
+    "vue-json-excel3": "^0.0.3",
     "vue-router": "^4.0.14",
+    "vue3-json-excel": "^1.0.10-alpha",
     "vue3-lazy": "^1.0.0-alpha.1",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",

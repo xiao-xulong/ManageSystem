@@ -22,7 +22,9 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.js"
+    "src/**/*.js",
+    "electron-main/**/*.ts",
+    "electron-preload/**/*.ts"
   ],
   "references": [
     {

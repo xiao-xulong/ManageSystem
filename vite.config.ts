@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import * as path from 'path';
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -11,6 +12,7 @@ import {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(),
+
 
   AutoImport({
     resolvers: [ElementPlusResolver()],
@@ -32,7 +34,9 @@ export default defineConfig({
   })
 
   ]
-  ,
+  , build: {
+    emptyOutDir: false,
+  },
   server: {
     open: true,
 

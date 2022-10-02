@@ -13,6 +13,8 @@ import lazyPlugin from 'vue3-lazy'
 import { Loading } from '../src/util/loading'
 const app = createApp(App)
 import dayjs from 'dayjs'
+import JsonExcel from "vue-json-excel3"
+app.component("downloadExcel", JsonExcel);
 app.config.globalProperties.$dayjs = dayjs as any
 
 app.config.globalProperties.$Loading = Loading
@@ -23,6 +25,7 @@ app.directive('focus', {
         el.focus()
     }
 })
+app.component("gj", JsonExcel);
 app.use(router).use(store).use(animate as any).use(lazyPlugin, {
     loading: './assets/imgLoading.png',// 图片加载时默认图片
     error: './assets/imgLoading.png'    // 图片加载失败时默认图片
