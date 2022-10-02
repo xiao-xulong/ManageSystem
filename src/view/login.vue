@@ -2,7 +2,12 @@
   <aside></aside>
   <main>
     <el-card class="box-card">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" :size="formSize">
+      <el-form
+        ref="ruleFormRef"
+        :model="ruleForm"
+        :rules="rules"
+        :size="formSize"
+      >
         <el-form-item>
           <div class="formTitle">登录</div>
         </el-form-item>
@@ -11,40 +16,63 @@
         </el-form-item>
         <!-- 密码框 -->
         <el-form-item prop="pwd">
-          <el-input :type="PwdinputType" v-model.trim="ruleForm.pwd" placeholder="密码">
+          <el-input
+            :type="PwdinputType"
+            v-model.trim="ruleForm.pwd"
+            placeholder="密码"
+          >
             <!-- 密码输入框眼睛svg图标 -->
 
             <template #suffix>
-              <svg @click="eyeChange" v-show="!PwdinputEye" t="1650711313739" class="svg" viewBox="0 0 1024 1024"
-                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8204">
+              <svg
+                @click="eyeChange"
+                v-show="!PwdinputEye"
+                t="1650711313739"
+                class="svg"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="8204"
+              >
                 <path
                   d="M972 366.8h-52.8c-20.8 39.7-46.6 76.1-77.1 108.7-42.9 45.9-92.8 82-148.4 107.2C636.2 608.7 575 622 512 622s-124.2-13.2-181.7-39.3c-55.6-25.2-105.5-61.2-148.4-107.2-30.5-32.6-56.2-69-77.1-108.7H52c28.1 60.5 66.4 114.7 112.4 160L76.8 638.5l35.8 32.1 87.5-111.7c34.9 28.6 73.3 52.5 114.5 70.9L268 766.7l43.9 17.1 46.5-136.9c41.4 13.9 85.1 22.3 130.2 24.4v145.8h46.7V671.4c45.2-2.2 88.8-10.6 130.2-24.4L712 783.9l43.9-17.1-46.5-136.9c41.1-18.4 79.6-42.3 114.5-70.9l87.5 111.7 35.8-32.1-87.5-111.7c45.9-45.4 84.2-99.6 112.3-160.1z"
-                  fill="" p-id="8205"></path>
+                  fill=""
+                  p-id="8205"
+                ></path>
               </svg>
-              <svg @click="eyeChange" v-show="PwdinputEye" t="1650711407953" class="svg" viewBox="0 0 1024 1024"
-                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8360">
+              <svg
+                @click="eyeChange"
+                v-show="PwdinputEye"
+                t="1650711407953"
+                class="svg"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="8360"
+              >
                 <path
                   d="M858.9 438.1l119.2-142-38.3-32.1-119 141.8c-32.4-25.6-69-49.6-108.9-69.3l61.4-168.6-47-17.1L666 316.3c-40.7-15.5-84-26-129-28.9v-170h-50v170c-45.2 2.8-88.7 12.8-129.5 27.8l-59.8-164.4-47 17.1 60.7 166.8c-40.5 19.3-77.6 43.1-110.4 68.5L84.2 264l-38.3 32.1 116.8 139.2C93.7 498.1 52 564.1 52 596.6c0 72.3 205.9 310 460 310s460-250.1 460-310c0-27.3-42.7-93.9-113.1-158.5z m62.5 158.5c-2.5 7.4-11.2 25.4-32.7 53.2-24.4 31.5-57 64.5-91.7 92.7-42 34.1-86.2 61.3-131.4 80.6-51.8 22.2-103.5 33.5-153.6 33.5-51.4 0-104.1-11.1-156.6-33.1-46.1-19.3-90.7-46.1-132.5-79.8-35.2-28.4-67.3-61.2-90.5-92.4-22.6-30.4-29.4-49.1-30.3-54.7 0.9-5.6 7.7-24.3 30.3-54.7 23.2-31.2 55.4-64 90.5-92.4 41.8-33.7 86.4-60.6 132.5-79.8 52.5-21.9 105.2-33.1 156.6-33.1 50.2 0 101.9 11.3 153.6 33.5 45.2 19.4 89.4 46.5 131.4 80.6 34.8 28.3 67.3 61.2 91.7 92.7 21.5 27.8 30.2 45.9 32.7 53.2zM626 510v-93.4c-32.8-21.3-72-33.6-114-33.6-116 0-210 94-210 210s94 210 210 210 210-94 210-210c0-29.5-6.1-57.5-17.1-83H626z m-0.9 196.1C594.9 736.4 554.7 753 512 753s-82.9-16.6-113.1-46.9C368.6 675.9 352 635.7 352 593s16.6-82.9 46.9-113.1C429.1 449.7 469.3 433 512 433c22.2 0 43.9 4.6 64 13.3V560h92.6c2.3 10.8 3.4 21.8 3.4 33 0 42.7-16.6 82.9-46.9 113.1z"
-                  fill="" p-id="8361"></path>
+                  fill=""
+                  p-id="8361"
+                ></path>
               </svg>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item prop="UserAgree">
-          <el-checkbox v-model="ruleForm.checked">已阅读并同意用户协议 和 隐私政策</el-checkbox>
+          <el-checkbox v-model="ruleForm.checked"
+            >已阅读并同意用户协议 和 隐私政策</el-checkbox
+          >
         </el-form-item>
         <el-form-item>
-          <el-button @click="submit(ruleFormRef)" style="color: white !important">登录</el-button>
+          <el-button
+            @click="submit(ruleFormRef)"
+            style="color: white !important"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
-    <Test></Test>
-    <!-- <button @click="c">123</button> -->
-    <downloadExcel class="export-excel-wrapper" :data="DetailsForm" :fields="json_fields" name="需要导出的表格名字.xls">
-      <!-- 上面可以自定义自己的样式，还可以引用其他组件button -->
-      <el-button type="success">导出</el-button>
-    </downloadExcel>
-
   </main>
 </template>
 
@@ -90,9 +118,8 @@ const DetailsForm = reactive([
     fund: "20元",
     complete: "已完成整改",
     remark: "重新更换了灯泡",
-  }
-
-])
+  },
+]);
 const store = useStore();
 const router = useRouter();
 const menuList = ref([] as any);
@@ -104,20 +131,18 @@ const menuInit = async () => {
   console.log(menuList.value);
 };
 
-
 const json_fields = {
-  "排查日期": 'date',
-  "整改隐患内容": 'details',
-  "整改措施": 'measure',
-  "整改时限": 'timeLimit',
-  "应急措施和预案": 'plan',
-  "整改责任人": 'personInCharge',
-  "填表人": 'preparer',
-  "整改资金": 'fund',
-  "整改完成情况": 'complete',
-  "备注": 'remark',
-}
-
+  排查日期: "date",
+  整改隐患内容: "details",
+  整改措施: "measure",
+  整改时限: "timeLimit",
+  应急措施和预案: "plan",
+  整改责任人: "personInCharge",
+  填表人: "preparer",
+  整改资金: "fund",
+  整改完成情况: "complete",
+  备注: "remark",
+};
 
 const formSize = ref("default");
 const ruleFormRef = ref<FormInstance>();
@@ -220,7 +245,8 @@ export default {
 }
 </style>
 <style scoped lang="less">
-:root {}
+:root {
+}
 
 aside {
   display: inline-block;
