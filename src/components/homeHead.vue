@@ -1,45 +1,51 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useStore } from 'vuex'
-import {
-  Fold, Expand
-} from '@element-plus/icons-vue'
-import { useRouter, useRoute } from 'vue-router'
-import fullScreenVue from './fullScreen.vue';
-import FullScreen from './fullScreen.vue';
-const router = useRouter()
-const route = useRoute()
-const store = useStore()
-console.log(store.state.routeFlag)
-let p = defineProps(
-  { isExpand: { type: Boolean } }
-)
-const newp = ref()
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { Fold, Expand } from "@element-plus/icons-vue";
+import { useRouter, useRoute } from "vue-router";
+import fullScreenVue from "./fullScreen.vue";
+import FullScreen from "./fullScreen.vue";
+const router = useRouter();
+const route = useRoute();
+const store = useStore();
+console.log(store.state.routeFlag);
+let p = defineProps({ isExpand: { type: Boolean } });
+const newp = ref();
 //头像地址
-const avatarUrl = ref('https://vkceyugu.cdn.bspapp.com/VKCEYUGU-bdbeaf13-95b3-48c4-a13b-687691a23e5f/0cfcda45-149b-4ca9-8a44-b352dc52893a.jpeg')
+const avatarUrl = ref(
+  "https://vkceyugu-backup.cdn.bspapp.com/VKCEYUGU-bdbeaf13-95b3-48c4-a13b-687691a23e5f/0cfcda45-149b-4ca9-8a44-b352dc52893a.jpeg"
+);
 //传值到父组件进行扩展图标转换
-const emit = defineEmits<{ (e: 'ExpandIconChange'): void }>();
+const emit = defineEmits<{ (e: "ExpandIconChange"): void }>();
 const ExpandIconChange = function () {
-  emit('ExpandIconChange')
-  console.log(newp.value)
-}
+  emit("ExpandIconChange");
+  console.log(newp.value);
+};
 //退出操作
 const logout = function () {
-  sessionStorage.clear()
-  router.replace('/login')
-}
+  sessionStorage.clear();
+  router.replace("/login");
+};
 </script>
 
 <template>
-
   <el-card class="headCard">
     <div
-      style="width: 100%;height: 100%; display: inline-block;padding: 0;margin: 0;position: relative;top: 50%;transform: translateY(-50%);">
+      style="
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      "
+    >
       <div @click="ExpandIconChange" class="svgBox">
         <Fold v-if="isExpand"></Fold>
         <Expand v-if="!isExpand"></Expand>
       </div>
-
     </div>
     <div class="box">
       <FullScreen class="fsIcon"></FullScreen>
@@ -48,7 +54,6 @@ const logout = function () {
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="logout">退出</el-dropdown-item>
-
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -84,8 +89,7 @@ const logout = function () {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-
-
+  margin-right: 40px;
 }
 
 .svgBox {
@@ -99,13 +103,11 @@ const logout = function () {
   margin-right: 20px;
 }
 
-
 svg {
   width: 40px;
   height: 40px;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-
 }
 </style>

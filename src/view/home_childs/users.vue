@@ -7,35 +7,71 @@
     </div>
 
     <el-table :data="userInfo" border stripe style="width: 100%">
-      <el-table-column v-for="item in tabPro" :key="item.prop" :prop="item.prop" :label="item.label">
+      <el-table-column
+        v-for="item in tabPro"
+        :key="item.prop"
+        :prop="item.prop"
+        :label="item.label"
+      >
         <template v-slot="scope">
           <div v-if="item.prop == 'create_time'">
             {{
-                proxy.$dayjs(scope.row.create_time * 1000).format("YYYY-MM-DD")
+              proxy.$dayjs(scope.row.create_time * 1000).format("YYYY-MM-DD")
             }}
           </div>
           <div v-if="item.prop == 'action'">
-            <el-button type="primary" @click="alterUser(scope.row)" :icon="Edit" />
-            <el-button type="warning" @click="setUserRole(scope.row)" :icon="Setting" />
-            <el-button type="danger" :icon="Delete" @click="deleteUser(scope.row.id)" />
+            <el-button
+              type="primary"
+              @click="alterUser(scope.row)"
+              :icon="Edit"
+            />
+            <el-button
+              type="warning"
+              @click="setUserRole(scope.row)"
+              :icon="Setting"
+            />
+            <el-button
+              type="danger"
+              :icon="Delete"
+              @click="deleteUser(scope.row.id)"
+            />
           </div>
 
           <div v-if="item.prop == 'mg_state'">
-            <el-switch size="large" v-model="scope.row.mg_state" @change="stateChange(scope.row)" />
+            <el-switch
+              size="large"
+              v-model="scope.row.mg_state"
+              @change="stateChange(scope.row)"
+            />
           </div>
         </template>
       </el-table-column>
     </el-table>
     <div>
-      <el-pagination v-model:currentPage="pagenum" v-model:page-size="pagesize" :page-sizes="[1, 2, 5, 10]"
-        layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
-        @current-change="handleCurrentChange" />
+      <el-pagination
+        v-model:currentPage="pagenum"
+        v-model:page-size="pagesize"
+        :page-sizes="[1, 2, 5, 10]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </el-card>
-  <diglog ref="ddd" :dialogVisible="dialogVisible" :AddDiglogShow="AddDiglogShow" :alterUserInfo="alterUserInfo"
-    @visibleChange="visibleChange" @addUserRefresh="usersGet"></diglog>
-  <setUserRoleDiglog :setUserRoleDialogVisible="setUserRoleDialogVisible"
-    @setUserRoleDialogCancel="setUserRoleDialogCancel" :userInfo="SetUserRoleInfo"></setUserRoleDiglog>
+  <diglog
+    ref="ddd"
+    :dialogVisible="dialogVisible"
+    :AddDiglogShow="AddDiglogShow"
+    :alterUserInfo="alterUserInfo"
+    @visibleChange="visibleChange"
+    @addUserRefresh="usersGet"
+  ></diglog>
+  <setUserRoleDiglog
+    :setUserRoleDialogVisible="setUserRoleDialogVisible"
+    @setUserRoleDialogCancel="setUserRoleDialogCancel"
+    :userInfo="SetUserRoleInfo"
+  ></setUserRoleDiglog>
 </template>
 
 <script setup lang='ts'>
@@ -49,7 +85,7 @@ import {
   Setting,
 } from "@element-plus/icons-vue";
 import { ElMessage, ElMessageBox } from "element-plus";
-import diglog from "../../components/dialog.vue"
+import diglog from "../../components/dialog.vue";
 import setUserRoleDiglog from "../../components/setUserRoleDiglog.vue";
 import { ref, onMounted, getCurrentInstance, onActivated } from "vue";
 import {
@@ -61,8 +97,8 @@ import {
 } from "../../../http/req";
 const { proxy } = getCurrentInstance() as any;
 onActivated(() => {
-  console.log('haaaaa')
-})
+  console.log("haaaaa");
+});
 const pagenum = ref(1);
 const pagesize = ref(10);
 const userInfo = ref([]);
@@ -182,11 +218,11 @@ const deleteUser = (id: any) => {
       });
     });
 };
-const ddd = ref()
+const ddd = ref();
 onMounted(() => {
   usersGet();
-  ddd.value.pose()
-  console.log('haaaaaon')
+  ddd.value.pose();
+  console.log("haaaaaon");
   // .dayjs(1642662900000).format('YYYY-MM-DD')
 });
 </script>
@@ -237,4 +273,3 @@ export default {
   width: 100px;
 }
 </style>
-Footer

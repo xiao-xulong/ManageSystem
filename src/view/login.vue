@@ -106,20 +106,6 @@ onActivated(() => {
 onMounted(() => {
   console.log("mmmm");
 });
-const DetailsForm = reactive([
-  {
-    date: "2022-3-10",
-    details: "卸油区过路灯损坏",
-    measure: "更换灯泡",
-    timeLimit: "2022-3-21",
-    plan: "先使用充电灯代替,贴好安全提醒告示",
-    personInCharge: "王xx",
-    preparer: "王xx",
-    fund: "20元",
-    complete: "已完成整改",
-    remark: "重新更换了灯泡",
-  },
-]);
 const store = useStore();
 const router = useRouter();
 const menuList = ref([] as any);
@@ -129,19 +115,6 @@ const menuInit = async () => {
   console.log("menuList.value");
   sessionStorage.setItem("routes", menuList.value);
   console.log(menuList.value);
-};
-
-const json_fields = {
-  排查日期: "date",
-  整改隐患内容: "details",
-  整改措施: "measure",
-  整改时限: "timeLimit",
-  应急措施和预案: "plan",
-  整改责任人: "personInCharge",
-  填表人: "preparer",
-  整改资金: "fund",
-  整改完成情况: "complete",
-  备注: "remark",
 };
 
 const formSize = ref("default");
@@ -221,6 +194,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         ElMessage({
           message: res.meta.msg,
           type: "success",
+          duration: 2000,
         });
 
         router.push("/");
