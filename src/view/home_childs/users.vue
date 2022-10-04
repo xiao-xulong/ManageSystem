@@ -4,74 +4,42 @@
       <el-input v-model="searchInfo" placeholder="输入用户名" />
       <el-button type="primary" :icon="Search" @click="search">搜索</el-button>
       <el-button type="primary" @click="addrUser">添加用户</el-button>
+      <JsonExcel style="display: inline-block;margin-left: 10px;" :data="userInfo" name="用户.xls">
+        <el-button type="success">导出为excel</el-button>
+      </JsonExcel>
+
     </div>
 
     <el-table :data="userInfo" border stripe style="width: 100%">
-      <el-table-column
-        v-for="item in tabPro"
-        :key="item.prop"
-        :prop="item.prop"
-        :label="item.label"
-      >
+      <el-table-column v-for="item in tabPro" :key="item.prop" :prop="item.prop" :label="item.label">
         <template v-slot="scope">
           <div v-if="item.prop == 'create_time'">
             {{
-              proxy.$dayjs(scope.row.create_time * 1000).format("YYYY-MM-DD")
+            proxy.$dayjs(scope.row.create_time * 1000).format("YYYY-MM-DD")
             }}
           </div>
           <div v-if="item.prop == 'action'">
-            <el-button
-              type="primary"
-              @click="alterUser(scope.row)"
-              :icon="Edit"
-            />
-            <el-button
-              type="warning"
-              @click="setUserRole(scope.row)"
-              :icon="Setting"
-            />
-            <el-button
-              type="danger"
-              :icon="Delete"
-              @click="deleteUser(scope.row.id)"
-            />
+            <el-button type="primary" @click="alterUser(scope.row)" :icon="Edit" />
+            <el-button type="warning" @click="setUserRole(scope.row)" :icon="Setting" />
+            <el-button type="danger" :icon="Delete" @click="deleteUser(scope.row.id)" />
           </div>
 
           <div v-if="item.prop == 'mg_state'">
-            <el-switch
-              size="large"
-              v-model="scope.row.mg_state"
-              @change="stateChange(scope.row)"
-            />
+            <el-switch size="large" v-model="scope.row.mg_state" @change="stateChange(scope.row)" />
           </div>
         </template>
       </el-table-column>
     </el-table>
     <div>
-      <el-pagination
-        v-model:currentPage="pagenum"
-        v-model:page-size="pagesize"
-        :page-sizes="[1, 2, 5, 10]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <el-pagination v-model:currentPage="pagenum" v-model:page-size="pagesize" :page-sizes="[1, 2, 5, 10]"
+        layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
+        @current-change="handleCurrentChange" />
     </div>
   </el-card>
-  <diglog
-    ref="ddd"
-    :dialogVisible="dialogVisible"
-    :AddDiglogShow="AddDiglogShow"
-    :alterUserInfo="alterUserInfo"
-    @visibleChange="visibleChange"
-    @addUserRefresh="usersGet"
-  ></diglog>
-  <setUserRoleDiglog
-    :setUserRoleDialogVisible="setUserRoleDialogVisible"
-    @setUserRoleDialogCancel="setUserRoleDialogCancel"
-    :userInfo="SetUserRoleInfo"
-  ></setUserRoleDiglog>
+  <diglog ref="ddd" :dialogVisible="dialogVisible" :AddDiglogShow="AddDiglogShow" :alterUserInfo="alterUserInfo"
+    @visibleChange="visibleChange" @addUserRefresh="usersGet"></diglog>
+  <setUserRoleDiglog :setUserRoleDialogVisible="setUserRoleDialogVisible"
+    @setUserRoleDialogCancel="setUserRoleDialogCancel" :userInfo="SetUserRoleInfo"></setUserRoleDiglog>
 </template>
 
 <script setup lang='ts'>
@@ -95,6 +63,7 @@ import {
   delUser,
   submitUserRole,
 } from "../../../http/req";
+import JsonExcel from "vue-json-excel3";
 const { proxy } = getCurrentInstance() as any;
 onActivated(() => {
   console.log("haaaaa");
@@ -184,8 +153,9 @@ const usersGet = async function () {
     await users(pagenum.value, pagesize.value, searchInfo.value.trim())
   ).data.data;
   userInfo.value = res.users;
+
   total.value = res.total;
-  // console.log(res);
+  console.log(userInfo.value);
 };
 const handleCurrentChange = function (pageNum: number) {
   pagenum.value = pageNum;
